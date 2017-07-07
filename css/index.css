@@ -23,6 +23,7 @@ body{
 }
 .content-p{
 	 text-indent:2em;
+	 line-height: 20px;
 }
 .container>div>img{
 	width: 90%;

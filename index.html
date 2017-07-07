@@ -8,44 +8,84 @@
   <link rel="stylesheet" href="css/normalize.css" />
   <link rel="stylesheet" type="text/css" href="css/index.css">
   <script type="text/javascript" src="js/rem.js" ></script>
-  
+  <style type="text/css">
+  	/*html,body{
+  		height: 100%;
+  	}*/
+  	#weixin-tip{display:none;position:fixed;left:0;top:0;background:rgba(0,0,0,0.8);filter:alpha(opacity=80);width:100%;height:100%;z-index:100;color: #fff;}
+	#weixin-tip p{text-align:center;margin-top:10%;padding:0 5%;position:relative;}
+	#weixin-tip p img{
+		width: 100%;
+	}
+	#weixin-tip .close{color:#fff;padding:5px;font:bold 20px/24px simsun;text-shadow:0 1px 0 #ddd;position:absolute;top:0;left:5%;}
+	/*.icon{
+		padding-top: 30%;
+		width: 30%;
+		margin-left: 35%;
+		
+		font-size: 18px;
+		line-height: 30px;
+		text-align: center;
+		font-family: '黑体';
+		margin-bottom: 50%;
+	}
+	.icon img{
+		width: 50px;
+	}
+	.icon span{
+		display: block;
+	}*/
+	.android-btn img{
+		width: 40%;
+		margin-left: 30%;
+	}
+  </style>
 </head>
 <body>
 	<div class="container">
 		<!-- <div class="title">卖场演示APP使用说明</div> -->
 		<p class="title-p">1.下载APP</p>
-		<p class="content-p">本APP仅支持android手机下载，可用手机浏览器（或其他应用市场），扫描下面二维码，下载APP（软件大小为22.5M）</p>
-		<div>
-			<img src="images/erweima.png" style="width: 60%;margin-left: 20%;" />
+		<p class="content-p">本APP仅支持android手机下载，点击下方按钮可以直接进行下载，APP软件大小为22.5M</p>
+		<a id="J_weixin" class="android-btn" href="http://files.git.oschina.net/group1/M00/01/78/PaAvDFleCEmAJVT4AWdhbhhUbLA212.apk?attname=app-debug.apk">
+		<img src="images/android-btn.png">
+		</a>
+		<div id="weixin-tip">
+			<p>
+				<img src="images/live_weixin.png" alt="微信打开"/>
+				<span id="close" title="关闭" class="close">×</span>
+			</p>
 		</div>
-		<p class="title-p">2.扫描完成后，下载APK</p>
-		<p class="title-p">3.安装APP</p>
-		<p class="title-p">4.安装完成，打开APP之前请先关闭手机WLAN</p>
-		<p class="title-p">5.打开时APP弹出WLAN开始提示框，选择允许</p>
+		<!-- <div>
+			<img src="images/erweima.png" style="width: 60%;margin-left: 20%;" />
+		</div> -->
+		<!-- <p class="title-p">2.点击下载后，下载APK</p> -->
+		<p class="title-p">2.安装APP</p>
+		<p class="title-p">3.安装完成，打开APP之前请先关闭手机WLAN</p>
+		<p class="title-p">4.打开时APP弹出WLAN开始提示框，选择允许</p>
 		<div>
 			<img src="images/2.png"/>
 		</div>
-		<p class="title-p">6.下拉刷新选择设备WIFI热点页面，出现设备后，点击设备名称（Mac地址后四位）</p>
+		<p class="title-p">5.下拉刷新选择设备WIFI热点页面，出现设备后，点击设备名称（Mac地址后四位）</p>
 		<div>
 			<img src="images/3.png"/>
 		</div>
-		<p class="title-p">7. 点击设备名称后，底部提示正在扫描设备，等待扫描完成</p>
+		<p class="title-p">6. 点击设备名称后，底部提示正在扫描设备，等待扫描完成</p>
 		<div>
 			<img src="images/4.png"/>
 		</div>
-		<p class="title-p">8.扫描完成后，再次点击设备Mac后四位，提示正在配置文件</p>
+		<p class="title-p">7.扫描完成后，再次点击设备Mac后四位，提示正在配置文件</p>
 		<div>
 			<img src="images/5.png"/>
 		</div>
-		<p class="title-p">9.配置完成后点击配置成功去体验</p>
+		<p class="title-p">8.配置完成后点击配置成功去体验</p>
 		<div>
 			<img src="images/6.png"/>
 		</div>
-		<p class="title-p">10.设备关机状态下，点击开关按钮使其开机</p>
+		<p class="title-p">9.设备关机状态下，点击开关按钮使其开机</p>
 		<div>
 			<img src="images/7.png"/>
 		</div>
-		<p class="title-p">11.开机后可进行相关操作</p>
+		<p class="title-p">10.开机后可进行相关操作</p>
 		<div>
 			<img src="images/8.png"/>
 		</div>
@@ -53,4 +93,23 @@
 		
 		
 </body>
+<script type="text/javascript">
+	var is_weixin = (function(){return navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1})();
+window.onload = function() {
+	var winHeight = typeof window.innerHeight != 'undefined' ? window.innerHeight : document.documentElement.clientHeight; //兼容IOS，不需要的可以去掉
+	var btn = document.getElementById('J_weixin');
+	var tip = document.getElementById('weixin-tip');
+	var close = document.getElementById('close');
+	if (is_weixin) {
+		btn.onclick = function(e) {
+			tip.style.height = winHeight + 'px'; //兼容IOS弹窗整屏
+			tip.style.display = 'block';
+			return false;
+		}
+		close.onclick = function() {
+			tip.style.display = 'none';
+		}
+	}
+}
+</script>
 </html>
