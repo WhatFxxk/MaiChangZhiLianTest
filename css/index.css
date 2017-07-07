@@ -30,3 +30,13 @@ body{
 	margin-bottom: 15px;
 	height: auto;
 }
+.zhezhao{
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	background: #000;
+	opacity: 0.5;
+	top: 0;
+	left: 0;
+	z-index: 100;
+}

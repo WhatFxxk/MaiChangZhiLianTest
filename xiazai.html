@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	
+  <title>下载APP</title>
+  <link rel="stylesheet" href="css/normalize.css" />
+  <link rel="stylesheet" type="text/css" href="css/index.css">
+  <script type="text/javascript" src="js/rem.js" ></script>
+  <style type="text/css">
+  	html,body{
+  		height: 100%;
+  	}
+  	#weixin-tip{display:none;position:fixed;left:0;top:0;background:rgba(0,0,0,0.8);filter:alpha(opacity=80);width:100%;height:100%;z-index:100;color: #fff;}
+	#weixin-tip p{text-align:center;margin-top:10%;padding:0 5%;position:relative;}
+	#weixin-tip p img{
+		width: 100%;
+	}
+	#weixin-tip .close{color:#fff;padding:5px;font:bold 20px/24px simsun;text-shadow:0 1px 0 #ddd;position:absolute;top:0;left:5%;}
+	.android-btn{
+		display: inline-block;
+		width: 100%;
+		margin-top: 10%;
+	}
+	.android-btn img{
+		width: 50%;
+		margin-left: 25%;
+	}
+  </style>
+</head>
+<body>
+	
+	<a id="J_weixin" class="android-btn" href="http://files.git.oschina.net/group1/M00/01/78/PaAvDFleCEmAJVT4AWdhbhhUbLA212.apk?attname=app-debug.apk"><img src="images/android-btn.png"></a>
+<div id="weixin-tip">
+	
+<p><img src="images/live_weixin.png" alt="微信打开"/><span id="close" title="关闭" class="close">×</span></p>
+</div>
+		
+</body>
+<script type="text/javascript">
+	var is_weixin = (function(){return navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1})();
+window.onload = function() {
+	var winHeight = typeof window.innerHeight != 'undefined' ? window.innerHeight : document.documentElement.clientHeight; //兼容IOS，不需要的可以去掉
+	var btn = document.getElementById('J_weixin');
+	var tip = document.getElementById('weixin-tip');
+	var close = document.getElementById('close');
+	if (is_weixin) {
+		btn.onclick = function(e) {
+			tip.style.height = winHeight + 'px'; //兼容IOS弹窗整屏
+			tip.style.display = 'block';
+			return false;
+		}
+		close.onclick = function() {
+			tip.style.display = 'none';
+		}
+	}
+}
+</script>
+</html>
